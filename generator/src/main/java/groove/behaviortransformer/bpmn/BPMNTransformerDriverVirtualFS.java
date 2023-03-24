@@ -24,6 +24,7 @@ public class BPMNTransformerDriverVirtualFS {
       generateGraphGrammarVirtualFS(bpmnCollaboration, fs.getPath("/virtual"));
     }
   }
+
   private static Path generateGraphGrammarVirtualFS(
       BPMNCollaboration bpmnCollaboration, Path outputDir) {
     BehaviorToGrooveTransformer transformer = new BehaviorToGrooveTransformer();
