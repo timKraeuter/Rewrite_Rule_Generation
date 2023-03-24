@@ -27,14 +27,14 @@ public class BPMNTransformerDriver {
     System.out.println("Generation finished see " + file.toString());
   }
 
-  private static void checkBPMNFilePathIsPresent(String[] args) {
+  static void checkBPMNFilePathIsPresent(String[] args) {
     if (args.length < 2) {
       throw new GrooveGenerationRuntimeException(
           "Please provide to arguments. The first for the input file and the second for the output path.");
     }
   }
 
-  private static BPMNCollaboration readBPMNFileFromPath(String pathToBPMNFile) throws IOException {
+  static BPMNCollaboration readBPMNFileFromPath(String pathToBPMNFile) throws IOException {
     Path model = Path.of(pathToBPMNFile);
     if (!Files.exists(model)) {
       throw new GrooveGenerationRuntimeException(

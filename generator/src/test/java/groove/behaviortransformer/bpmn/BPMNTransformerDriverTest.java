@@ -36,4 +36,15 @@ class BPMNTransformerDriverTest extends BPMNToGrooveTestBase {
 
     checkGenerationEqualToExpected(fixedRules::contains, "cyclic", Path.of(tempDirectoryPath));
   }
+
+  @Test
+  void mainTestVirtualFS() throws Exception {
+    String bpmnFileName = "cyclic.bpmn";
+    String resourcePath = BPMN_BPMN_MODELS_SEMANTICS_TEST_FOLDER + bpmnFileName;
+    Path pathToBPMNModel = FileTestHelper.getResource(resourcePath);
+
+    String[] args = {pathToBPMNModel.toString(), "a"};
+
+    BPMNTransformerDriverVirtualFS.main(args);
+  }
 }
