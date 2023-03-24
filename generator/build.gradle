@@ -40,9 +40,8 @@ dependencies {
     // https://mvnrepository.com/artifact/org.eclipse.elk/org.eclipse.elk.alg.layered
     implementation 'org.eclipse.elk:org.eclipse.elk.alg.layered:0.7.1'
 
-    // https://mvnrepository.com/artifact/com.github.marschall/memoryfilesystem
-    implementation 'com.github.marschall:memoryfilesystem:2.5.0'
-
+    // Virtual file system
+    implementation 'com.google.jimfs:jimfs:1.2'
 
     // https://mvnrepository.com/artifact/org.hamcrest/hamcrest
     testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
@@ -93,7 +92,7 @@ spotless {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'groove.behaviortransformer.bpmn.BPMNTransformerDriver'
+        attributes 'Main-Class': 'groove.behaviortransformer.bpmn.BPMNTransformerDriverVirtualFS'
     }
     // Builds a fat jar.
     from {

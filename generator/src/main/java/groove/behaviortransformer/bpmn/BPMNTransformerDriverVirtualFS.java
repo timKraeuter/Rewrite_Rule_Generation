@@ -4,7 +4,8 @@ import static groove.behaviortransformer.bpmn.BPMNTransformerDriver.checkBPMNFil
 import static groove.behaviortransformer.bpmn.BPMNTransformerDriver.readBPMNFileFromPath;
 
 import behavior.bpmn.BPMNCollaboration;
-import com.github.marschall.memoryfilesystem.MemoryFileSystemBuilder;
+import com.google.common.jimfs.Configuration;
+import com.google.common.jimfs.Jimfs;
 import groove.behaviortransformer.BehaviorToGrooveTransformer;
 import java.io.IOException;
 import java.nio.file.FileSystem;
@@ -19,11 +20,10 @@ public class BPMNTransformerDriverVirtualFS {
     String pathToBPMNFile = args[0];
     BPMNCollaboration bpmnCollaboration = readBPMNFileFromPath(pathToBPMNFile);
 
-    try (FileSystem fs = MemoryFileSystemBuilder.newEmpty().build()) {
+    try (FileSystem fs = Jimfs.newFileSystem(Configuration.unix())) {
       generateGraphGrammarVirtualFS(bpmnCollaboration, fs.getPath("/virtual"));
     }
   }
-
   private static Path generateGraphGrammarVirtualFS(
       BPMNCollaboration bpmnCollaboration, Path outputDir) {
     BehaviorToGrooveTransformer transformer = new BehaviorToGrooveTransformer();
